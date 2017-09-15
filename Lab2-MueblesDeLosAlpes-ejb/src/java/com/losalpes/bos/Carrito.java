@@ -31,7 +31,7 @@ public class Carrito
     /**
      * Los items que se encuentran en el carrito
      */
-    private ArrayList<Item> items;  
+    private ArrayList<Item> items = new ArrayList<Item>();  
 
     //-----------------------------------------------------------
     // Constructor por defecto es suficiente para este tipo de objeto.
