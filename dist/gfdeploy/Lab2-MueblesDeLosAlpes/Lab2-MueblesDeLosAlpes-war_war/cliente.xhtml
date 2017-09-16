@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+     
+
+            <ui:define name="body">
+               <h:form>
+            
+
+                <!-- Se crea una tabla donde se presentan los clientes del sistema -->
+                <p:dataTable
+                    id="data"
+                    value="#{clienteBean.clientes}"
+                    var="client"
+                    scrollable="false"
+                    scrollHeight="100px"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    resizableColumns="true"
+                    rows="5">
+
+                           
+                    <p:column headerText="Tipo Doc" sortBy="#{client.tipoDocumento}">
+                        <h:outputText value="#{client.tipoDocumento}" />
+                    </p:column>
+                    
+                    <p:column headerText="Num Doc">
+                        <h:outputText value="#{client.numDocumento}" />
+                    </p:column>
+                    
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{client.nombre}" />
+                    </p:column>
+                    
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{client.tipo}" />
+                    </p:column>
+                    
+                </p:dataTable>
+
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
