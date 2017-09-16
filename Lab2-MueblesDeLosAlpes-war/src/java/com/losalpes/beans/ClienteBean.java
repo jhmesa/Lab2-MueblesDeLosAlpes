@@ -13,8 +13,12 @@
 package com.losalpes.beans;
 
 import com.losalpes.bos.Cliente;
+import com.losalpes.bos.TipoUsuario;
+import com.losalpes.bos.Usuario;
 import com.losalpes.servicios.IServicioCliente;
+import com.losalpes.servicios.IServicioSeguridad;
 import com.losalpes.servicios.ServicioClienteMock;
+import com.losalpes.servicios.ServicioSeguridadMock;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 
@@ -40,6 +44,16 @@ public class ClienteBean
      * Relación con la interfaz que provee los servicios necesarios del catálogo de clientes.
      */
     private IServicioCliente catalogoCliente;
+    
+     /**
+     * Relación con la interfaz adecuada para la autenticación de usuarios
+     */
+    private IServicioSeguridad servicioSeguridad;    
+    
+    /**
+     * Representa el usuario
+     */
+    private Usuario usuario;    
 
     //-----------------------------------------------------------
     // Constructor
@@ -52,6 +66,8 @@ public class ClienteBean
     {
         cliente=new Cliente();
         catalogoCliente=new ServicioClienteMock();
+        servicioSeguridad = new ServicioSeguridadMock();
+        usuario = new Usuario();
     }
 
     //-----------------------------------------------------------
@@ -82,8 +98,23 @@ public class ClienteBean
      */
     public List<Cliente> getClientes()
     {
-
         return catalogoCliente.darClientes();
+    }
+    
+    /**
+     * Modifica el objeto usuario
+     * @param usuario Nuevo Usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * Modifica el objeto usuario
+     * @param usuario Nuevo Usuario
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     //-----------------------------------------------------------
@@ -96,16 +127,18 @@ public class ClienteBean
     public void agregarCliente()
     {
         catalogoCliente.agregarCliente(cliente);
+        usuario.setTipo(TipoUsuario.CLIENTE);
+        servicioSeguridad.addUser(usuario);
         cliente=new Cliente();
+        usuario = new Usuario();
     }
 
     /**
      * Elimina la información del cliente
      */
     public void limpiar()
-    {
-        cliente=new Cliente();
-    }
-   
+    {        cliente=new Cliente();
+        usuario = new Usuario();
+    }   
 
 }

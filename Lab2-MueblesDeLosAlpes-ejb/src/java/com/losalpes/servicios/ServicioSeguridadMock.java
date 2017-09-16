@@ -85,4 +85,14 @@ public class ServicioSeguridadMock implements IServicioSeguridad
         return u;
     }
 
+    /**
+     * Agrega un nuevo usuario
+     * @param usuario Usuario a agregar.
+     */
+    @Override
+    public void addUser(Usuario usuario) {
+       //Agrega el usuario al sistema
+        usuarios.add(usuario);         
+     }
+
 }

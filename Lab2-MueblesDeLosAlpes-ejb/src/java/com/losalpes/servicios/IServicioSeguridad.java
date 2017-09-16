@@ -12,6 +12,7 @@
 
 package com.losalpes.servicios;
 
+import com.losalpes.bos.TipoUsuario;
 import com.losalpes.bos.Usuario;
 import com.losalpes.excepciones.AutenticacionException;
 
@@ -29,5 +30,11 @@ public interface IServicioSeguridad
      * @return usuario Retorna el objeto que contiene la información del usuario que ingreso al sistema.
      */
     public Usuario login(String nombre, String contraseña)throws AutenticacionException;
+    
+    /**
+     * Agrega un nuevo usuario
+     * @param usuario Usuario a agregar.
+     */
+    public void addUser(Usuario usuario);
 
 }

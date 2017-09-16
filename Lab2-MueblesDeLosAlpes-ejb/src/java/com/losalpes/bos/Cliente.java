@@ -171,7 +171,7 @@ public class Cliente {
         return telResidencia;
     }
 
-    public void setTelResidencia(int telResidencia) {
+    public void setTelResidencia(long telResidencia) {
         this.telResidencia = telResidencia;
     }
 
@@ -183,7 +183,7 @@ public class Cliente {
         return telCelular;
     }
 
-    public void setTelCelular(int telCelular) {
+    public void setTelCelular(long telCelular) {
         this.telCelular = telCelular;
     }
 

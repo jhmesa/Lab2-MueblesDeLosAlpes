@@ -6,7 +6,8 @@
 <ui:composition template="/main-template.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:param name="titulo" value="Control de Acceso" />
     <ui:define name="body">
@@ -17,31 +18,35 @@
                     Administración del Catálogo
                 </f:facet>
                 <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
-                    <h:outputLabel for="TxtName"
+                    <p:outputLabel for="TxtName"
                                    value="Nombre usuario" />
-                    <h:inputText id="TxtName"
+                    <p:inputText id="TxtName"
                                  size="20"
                                  label="Nombre usuario"
                                  maxlength="20"
                                  value="#{loginBean.usuario}"
                                  required="true">
                         <f:validateLength minimum="1"/>
-                    </h:inputText>
+                    </p:inputText>
                     <h:message id="nameMsg" for="TxtName" errorClass="error" styleClass="error"/>
                 
                     <h:outputLabel for="TxtPw"
                                      value="Contraseña" />
-                    <h:inputSecret id="TxtPw"
+                    <p:password id="TxtPw"
                                      maxlength="20"
                                      size="20"
                                      value="#{loginBean.contraseña}"
                                      label="Contraseña"
                                      required="true">
                         <f:validateLength minimum="6" maximum="15" />
-                    </h:inputSecret>
+                    </p:password>
                     <h:message id="pwMsg" for="TxtPw" styleClass="error"/>
                     
-                    <h:commandButton value="Ingresar" action="#{loginBean.login}" type="submit" />
+                    <h:panelGrid columns="6">
+                        
+                     <h:commandButton value="Ingresar" action="#{loginBean.login}" type="submit" />   
+                    </h:panelGrid>
+                    
                 </h:panelGrid>
                 
             </h:panelGroup>

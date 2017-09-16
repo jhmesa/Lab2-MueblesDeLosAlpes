@@ -19,13 +19,16 @@ import com.losalpes.servicios.IServicioSeguridad;
 import com.losalpes.servicios.ServicioSeguridadMock;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  * Managed bean encargado de la autenticación en el sistema
  * 
  */
 @ManagedBean
+@SessionScoped
 public class LoginBean
 {
 
@@ -53,6 +56,17 @@ public class LoginBean
      */
     private boolean error;
 
+    
+    /**
+     * Determina si el usuario es administrador
+     */
+    private boolean esAdministrador;
+
+    /**
+     * Determina si el usuario está logeado exitosamente
+     */
+    private boolean esUsuarioLogeado;    
+    
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
@@ -75,19 +89,16 @@ public class LoginBean
      * @return tipoUsuario Devuelve el tipo de usuario
      */
     public String login()
-    {
-       
+    {       
         try
         {
             Usuario user = servicio.login(usuario, contraseña);
             if (user.getTipo() == TipoUsuario.ADMINISTRADOR)
             {
-                return "catalogo.xhtml";
-            }
-            else
-            {
-                return "";
-            }
+                setEsAdministrador(true);
+            } 
+            setEsUsuarioLogeado(true);
+            return "catalogo.xhtml";
         }
         catch (AutenticacionException ex)
         {
@@ -98,6 +109,16 @@ public class LoginBean
         }
     }
 
+    
+     /**
+     * Realiza la salida de un usuario del sistema
+     */
+    public String logout()
+    {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index.xhtml";
+    }
+    
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
@@ -162,5 +183,37 @@ public class LoginBean
     public void cerrarPanelError()
     {
         error=false;
+    }
+    
+    /**
+     * Devuelve true o false si el usuario logeado es administrado
+     * @return esAdministrador 
+     */
+    public boolean isEsAdministrador() {
+        return esAdministrador;
+    }
+
+    /**
+     * Modifica el valor de esAdministrador
+     * @param esAdministrador nuevo valor de esAdministrador
+     */
+    public void setEsAdministrador(boolean esAdministrador) {
+        this.esAdministrador = esAdministrador;
+    }
+    
+    /**
+     * Devuelve true o false si el usuario está logeado exitosamente
+     * @return esUsuarioLogeado 
+     */
+    public boolean isEsUsuarioLogeado() {
+        return esUsuarioLogeado;
+    }
+
+    /**
+     * Modifica el valor de esUsuarioLogeado
+     * @param esUsuarioLogeado nuevo valor de esUsuarioLogeado
+     */
+    public void setEsUsuarioLogeado(boolean esUsuarioLogeado) {
+        this.esUsuarioLogeado = esUsuarioLogeado;
     }
 }

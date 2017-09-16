@@ -6,49 +6,212 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <body>
+    <ui:param name="titulo" value="Catálogo de clientes" />
+    <ui:define name="body">
 
-     
+        <h:form>    
 
-            <ui:define name="body">
-               <h:form>
-            
+            <!-- Panel para agregar un nuevo cliente -->
+            <p:panel>
+                <h:panelGrid  columns="6" cellpadding="5">                    
+                    
+                    <p:outputLabel for="TxtTipoDoc" value="Tipo Documento" style="width: 100px;"/>
+                    <p:selectOneMenu style="width: 192px;" required="true" id ="TxtTipoDoc" value="#{clienteBean.cliente.tipoDocumento}">
+                        <f:selectItem itemLabel="Seleccione" itemValue="" />
+                        <f:selectItem itemLabel="Cédula" itemValue="Cédula" />
+                        <f:selectItem itemLabel="Nit" itemValue="Nit" />
+                    </p:selectOneMenu>
+                    <h:message id="tipoMsg" for="TxtTipoDoc" />                    
+                    
+                    <p:outputLabel for="TxtNumDoc" style="width: 100px;"
+                                   value="Número Documento"/>
+                    <p:inputText id="TxtNumDoc"
+                                 style="width: 192px;"
+                                 label="Número Documento"
+                                 value="#{clienteBean.cliente.numDocumento}"
+                                 required="true"
+                                 >                       
+                    </p:inputText>
+                    <h:message id="numMsg" for="TxtNumDoc" />
 
-                <!-- Se crea una tabla donde se presentan los clientes del sistema -->
-                <p:dataTable
-                    id="data"
-                    value="#{clienteBean.clientes}"
-                    var="client"
-                    scrollable="false"
-                    scrollHeight="100px"
-                    paginator="true"
-                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    resizableColumns="true"
-                    rows="5">
+                    
+                    <p:outputLabel for="TxtNombre" style="width: 100px;"
+                                   value="Nombres"/>
+                    <p:inputText id="TxtNombre"
+                                 style="width: 192px;"
+                                 label="Nombre"
+                                 value="#{clienteBean.cliente.nombre}"
+                                 required="true"
+                                 >
+                    </p:inputText>
+                    <h:message id="nomMsg" for="TxtNombre" />
 
-                           
-                    <p:column headerText="Tipo Doc" sortBy="#{client.tipoDocumento}">
-                        <h:outputText value="#{client.tipoDocumento}" />
-                    </p:column>
                     
-                    <p:column headerText="Num Doc">
-                        <h:outputText value="#{client.numDocumento}" />
-                    </p:column>
+                    <p:outputLabel for="TxtTelefonoRes" style="width: 100px;"
+                                   value="Teléfono Residencia"/>
+                    <p:inputText id="TxtTelefonoRes"
+                                 style="width: 192px;"
+                                 label="Teléfono Residencia"
+                                 value="#{clienteBean.cliente.telResidencia}"
+                                 required="true"
+                                 >
+                    </p:inputText>
+                    <h:message id="telResMsg" for="TxtTelefonoRes" />
                     
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{client.nombre}" />
-                    </p:column>
                     
-                    <p:column headerText="Tipo">
-                        <h:outputText value="#{client.tipo}" />
-                    </p:column>
+                    <p:outputLabel for="TxtTelefonoCel" style="width: 100px;"
+                                   value="Teléfono Celular"/>
+                    <p:inputText id="TxtTelefonoCel"
+                                 style="width: 192px;"
+                                 label="Teléfono Celular"
+                                 value="#{clienteBean.cliente.telCelular}"
+                                 >
+                    </p:inputText>
+                    <h:message id="telCelMsg" for="TxtTelefonoRes" />
                     
-                </p:dataTable>
+                    
+                    <p:outputLabel for="TxtDireccion" style="width: 100px;"
+                                   value="Dirección"/>
+                    <p:inputText id="TxtDireccion"
+                                 style="width: 192px;"
+                                 label="Dirección"
+                                 value="#{clienteBean.cliente.direccion}"
+                                 required="true"
+                                 >
+                    </p:inputText>
+                    <h:message id="dirMsg" for="TxtDireccion" />
+                    
+                    
+                    <p:outputLabel for="TxtCiudad" style="width: 100px;"
+                                   value="Ciudad Residencia"/>
+                    <p:inputText id="TxtCiudad"
+                                 style="width: 192px;"
+                                 label="Ciudad Residencia"
+                                 value="#{clienteBean.cliente.ciudad}"
+                                 required="true"
+                                 >
+                    </p:inputText>
+                    <h:message id="ciudadMsg" for="TxtCiudad" />
+                    
+                    
+                    <p:outputLabel for="TxtDepartamento" style="width: 100px;"
+                                   value="Departamento Residencia"/>
+                    <p:inputText id="TxtDepartamento"
+                                 style="width: 192px;"
+                                 label="Departamento Residencia"
+                                 value="#{clienteBean.cliente.departamento}"
+                                 required="true"
+                                 >
+                    </p:inputText>
+                    <h:message id="departMsg" for="TxtDepartamento" />
+                    
+                    
+                    <p:outputLabel for="TxtPais" style="width: 100px;"
+                                   value="País Residencia"/>
+                    <p:inputText id="TxtPais"
+                                 style="width: 192px;"
+                                 label="País Residencia"
+                                 value="#{clienteBean.cliente.pais}"
+                                 required="true"
+                                 >
+                    </p:inputText>
+                    <h:message id="paisMsg" for="TxtPais" />
+                    
+                    
+                    <p:outputLabel for="TxtProfesion" style="width: 100px;"
+                                   value="Profesión"/>
+                    <p:inputText id="TxtProfesion"
+                                 style="width: 192px;"
+                                 label="Profesión"
+                                 value="#{clienteBean.cliente.profesion}"
+                                 >
+                    </p:inputText>
+                    <h:message id="profesionMsg" for="TxtProfesion" />
+                    
+                                        
+                    <p:outputLabel for="TxtEmail" style="width: 100px;"
+                                   value="Email"/>
+                    <p:inputText id="TxtEmail"
+                                 style="width: 192px;"
+                                 label="Email"
+                                 value="#{clienteBean.cliente.email}"
+                                 required="true"
+                                 >
+                    </p:inputText>
+                    <h:message id="emailMsg" for="TxtEmail" />                            
+                    
+                    
+                    <p:outputLabel for="TxtUsuario" style="width: 100px;"
+                                   value="Usuario"/>
+                    <p:inputText id="TxtUsuario"
+                                 style="width: 192px;"
+                                 label="Usuario"
+                                 value="#{clienteBean.cliente.email}"
+                                 required="true"
+                                 >
+                    </p:inputText>
+                    <h:message id="usuarioMsg" for="TxtUsuario" /> 
+                    
+                    
+                    <p:outputLabel for="TxtContrasena" style="width: 100px;"
+                                   value="Contraseña"/>
+                    <p:inputText id="TxtContrasena"
+                                 style="width: 192px;"
+                                 label="Contraseña"
+                                 value="#{clienteBean.cliente.profesion}"
+                                 >
+                    </p:inputText>
+                    <h:message id="contrasenaMsg" for="TxtContrasena" />
+                                      
+                </h:panelGrid>           
+               
+               
+                <h:commandButton value="Agregar" action="#{clienteBean.agregarCliente}" />
+                <h:commandButton value="Limpiar" action="#{clienteBean.limpiar}" />
+            </p:panel>
+        </h:form>
+
+        <h:form>
+            <!-- Se crea una tabla donde se presentan los clientes del sistema -->
+            <p:dataTable
+                id="data"
+                value="#{clienteBean.clientes}"
+                var="client"
+                scrollable="false"
+                scrollHeight="100px"
+                paginator="true"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                resizableColumns="true"
+                rows="5"
+                emptyMessage="No hay clientes que cumplan el filtro"
+                >
+
+                
+                
+                <p:column filterBy="#{client.tipoDocumento}" headerText="Tipo Documento" filterMatchMode="exact" sortBy="#{client.tipoDocumento}">
+                    <h:outputText value="#{client.tipoDocumento}" />
+                </p:column>
+
+                <p:column filterBy="#{client.numDocumento}" headerText="Número Documento" filterMatchMode="contains" sortBy="#{client.numDocumento}">
+                    <h:outputText value="#{client.numDocumento}" />
+                </p:column>
+
+                <p:column filterBy="#{client.nombre}" headerText="Nombre" filterMatchMode="contains" sortBy="#{client.nombre}">
+                    <h:outputText value="#{client.nombre}" />
+                </p:column>
+
+                <p:column filterBy="#{client.ciudad}" headerText="Ciudad" filterMatchMode="contains" sortBy="#{client.ciudad}">
+                    <h:outputText value="#{client.ciudad}" />
+                </p:column>
+                
+                <p:column filterBy="#{client.pais}" headerText="País" filterMatchMode="contains" sortBy="#{client.pais}">
+                    <h:outputText value="#{client.pais}" />
+                </p:column>
+                
+            </p:dataTable>
 
         </h:form>
-            </ui:define>
+    </ui:define>
 
-        </ui:composition>
+</ui:composition>
 
-    </body>
-</html>
