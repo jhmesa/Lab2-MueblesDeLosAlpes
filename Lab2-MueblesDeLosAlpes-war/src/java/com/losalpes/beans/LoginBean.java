@@ -21,7 +21,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 /**
  * Managed bean encargado de la autenticación en el sistema
@@ -67,6 +66,8 @@ public class LoginBean
      */
     private boolean esUsuarioLogeado;    
     
+    
+    ClienteBean cliente;
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
@@ -96,7 +97,11 @@ public class LoginBean
             if (user.getTipo() == TipoUsuario.ADMINISTRADOR)
             {
                 setEsAdministrador(true);
-            } 
+            } else {
+                cliente = new ClienteBean();
+                cliente.getCliente().setUsuario(usuario);
+                
+            }
             setEsUsuarioLogeado(true);
             return "catalogo.xhtml";
         }

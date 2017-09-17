@@ -31,8 +31,15 @@ public class ServicioSeguridadMock implements IServicioSeguridad
     /**
      * Arreglo con los usuarios del sistema
      */
-    private ArrayList<Usuario> usuarios;
+    private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
+    static{
+        
+        //Agrega usuarios al sistema
+        usuarios.add(new Usuario("admin","adminadmin",TipoUsuario.ADMINISTRADOR));
+        usuarios.add(new Usuario("client","clientclient",TipoUsuario.CLIENTE));
+    }
+    
     //-----------------------------------------------------------
     // Métodos
     //-----------------------------------------------------------
@@ -43,11 +50,11 @@ public class ServicioSeguridadMock implements IServicioSeguridad
     public ServicioSeguridadMock()
     {
         //Inicializa el arreglo que contiene los usuarios
-        usuarios=new ArrayList<Usuario>();
+       // usuarios=new ArrayList<Usuario>();
 
         //Agrega usuarios al sistema
-        usuarios.add(new Usuario("admin","adminadmin",TipoUsuario.ADMINISTRADOR));
-        usuarios.add(new Usuario("client","clientclient",TipoUsuario.CLIENTE));
+        //usuarios.add(new Usuario("admin","adminadmin",TipoUsuario.ADMINISTRADOR));
+        //usuarios.add(new Usuario("client","clientclient",TipoUsuario.CLIENTE));
 
     }
 
@@ -62,7 +69,7 @@ public class ServicioSeguridadMock implements IServicioSeguridad
      * @return usuario Retorna el objeto que contiene la información del usuario que ingreso al sistema.
      */
     @Override
-    public Usuario login(String nombre, String contraseña) throws AutenticacionException
+    public  Usuario login(String nombre, String contraseña) throws AutenticacionException
     {
         Usuario u=null;
 
@@ -72,7 +79,7 @@ public class ServicioSeguridadMock implements IServicioSeguridad
         {
             u=usuarios.get(i);
 
-            if(u.getNombre().equals(nombre)&& u.getContraseña().equals(contraseña))
+            if(u.getUsuario().equals(nombre)&& u.getContraseña().equals(contraseña))
             {
                termino=true;
             }

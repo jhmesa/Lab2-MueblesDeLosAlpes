@@ -12,7 +12,6 @@
 
 package com.losalpes.servicios;
 
-import com.losalpes.bos.TipoUsuario;
 import com.losalpes.bos.Usuario;
 import com.losalpes.excepciones.AutenticacionException;
 

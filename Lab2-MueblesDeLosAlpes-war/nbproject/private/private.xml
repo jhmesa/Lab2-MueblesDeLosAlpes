@@ -5,9 +5,8 @@
         <group>
             <file>file:/C:/Users/jaher/Desktop/Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/web/cliente.xhtml</file>
             <file>file:/C:/Users/jaher/Desktop/Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/src/java/com/losalpes/beans/LoginBean.java</file>
-            <file>file:/C:/Users/jaher/Desktop/Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/jaher/Desktop/Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/web/index.xhtml</file>
-            <file>file:/C:/Users/jaher/Desktop/Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/web/catalogo.xhtml</file>
+            <file>file:/C:/Users/jaher/Desktop/Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/web/carro.xhtml</file>
+            <file>file:/C:/Users/jaher/Desktop/Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/src/java/com/losalpes/beans/CarroComprasBean.java</file>
             <file>file:/C:/Users/jaher/Desktop/Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/src/java/com/losalpes/beans/ClienteBean.java</file>
         </group>
     </open-files>

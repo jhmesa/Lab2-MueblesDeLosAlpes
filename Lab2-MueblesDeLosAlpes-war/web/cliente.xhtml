@@ -6,7 +6,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:param name="titulo" value="Catálogo de clientes" />
+    <ui:param name="titulo" value="Clientes" />
     <ui:define name="body">
 
         <h:form>    
@@ -146,7 +146,7 @@
                     <p:inputText id="TxtUsuario"
                                  style="width: 192px;"
                                  label="Usuario"
-                                 value="#{clienteBean.usuario.nombre}"
+                                 value="#{clienteBean.cliente.usuario}"
                                  required="true"
                                  >
                     </p:inputText>
@@ -155,7 +155,7 @@
                     
                     <p:outputLabel for="TxtContrasena" style="width: 100px;"
                                    value="Contraseña"/>
-                    <p:password id="TxtContrasena" value="#{clienteBean.usuario.contraseña}" style="width: 192px;" required="true"/>                    
+                    <p:password id="TxtContrasena" value="#{clienteBean.cliente.contraseña}" style="width: 192px;" required="true"/>                    
                     <h:message id="contrasenaMsg" for="TxtContrasena" />
                                       
                 </h:panelGrid>           
@@ -193,6 +193,10 @@
 
                 <p:column filterBy="#{client.nombre}" headerText="Nombre" filterMatchMode="contains" sortBy="#{client.nombre}">
                     <h:outputText value="#{client.nombre}" />
+                </p:column>
+                
+                <p:column filterBy="#{client.email}" headerText="Email" filterMatchMode="contains" sortBy="#{client.email}">
+                    <h:outputText value="#{client.email}" />
                 </p:column>
 
                 <p:column filterBy="#{client.ciudad}" headerText="Ciudad" filterMatchMode="contains" sortBy="#{client.ciudad}">

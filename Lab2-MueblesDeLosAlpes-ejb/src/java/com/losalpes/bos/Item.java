@@ -22,11 +22,6 @@ public class Item
     //-----------------------------------------------------------
 
     /**
-     * Referencia que identifica el modelo del mueble en el sistema.
-     */
-    private String referencia;
-
-    /**
      * Cantidad para la referencia del item de carrito.
      */
     private int cantidad;
@@ -34,9 +29,17 @@ public class Item
     /**
      * Precio unitario del producto.
      */
-    private Float precio;
-
+    private Double precio;
     
+    /**
+     * Marca para la vista del carrito de compras para sumarizar el precio la selección de los items seleccionados.
+     */
+    private  final String carro = "A";
+    
+    /**
+     * Referencia del objeto mueble
+     */
+    private Mueble mueble;
 
     //-----------------------------------------------------------
     // Constructores
@@ -52,67 +55,78 @@ public class Item
 
     /**
      * Constructor de la clase. Inicializa los atributos con los valores que ingresan por parametro.
-     * @param referencia Referencia del mueble
-     * @param cantidad Cantidad del producto que se compra.
-     * @param precio precio de cada item del producto. 
+     * @param mueble Referencia del mueble
+     * @param cantidad Cantidad de muebles de la misma referencia
+     * @param precio Valor del precio
      */
-    public Item(String referencia, int cantidad, Float precio)
+     public Item(Mueble mueble, int cantidad, Double precio)
     {
-        this.referencia = referencia;
+        this.mueble = mueble;
         this.cantidad = cantidad;
         this.precio = precio;
     }
-
+    
+    
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
-
    
-
-    /**
-     * Devuelve la referencia del mueble
-     * @return referencia Referencia del mueble
-     */
-    public String getReferencia()
-    {
-        return referencia;
-    }
-
-    /**
-     * Modifica la referencia del mueble
-     * @param referencia Nueva referencia del mueble
-     */
-    public void setReferencia(String referencia) {
-        this.referencia = referencia;
-    }
    
     /**
-     * @return cantidad del item a comprar
+     * Devuelve la cantidad del mueble
+     * @return cantidad Cantidad de la referencia del mueble
      */
     public int getCantidad() {
         return cantidad;
     }
 
     /**
-     * @param cantidad que se comprara
+     * Modifica la cantidad del mueble
+     * @param cantidad Nuevo cantidad de la referencia del mueble
      */
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
     /**
-     * @return precio unitario del item 
+     * Devuelve el precio del mueble
+     * @return precio Precios de los muebles de la misma referencia
      */
-    public Float getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
     /**
-     * @param precio precio unitario del item
+     * Modifica el precio de la referencia del mueble
+     * @param precio Nuevo precio ee la referencia del mueble
      */
-    public void setPrecio(Float precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
+    /**
+     * Devuelve el objeto mueble
+     * @return mueble Objeto tipo Mueble
+     */
+    public Mueble getMueble() {
+        return mueble;
+    }
 
+    /**
+     * Modifica la referencia del mueble
+     * @param mueble Nueva referencia del mueble
+     */
+    public void setMueble(Mueble mueble) {
+        this.mueble = mueble;
+    } 
+
+    /**
+     * Devuelve la marca de la fila de suma de los precios de los items del carrito de compras
+     * @return carro
+     */
+    public String getCarro() {
+        return carro;
+    }
+    
+    
 }

@@ -24,7 +24,7 @@ public class Usuario
     /**
      * Nombre del usuario
      */
-    private String nombre;
+    private String usuario;
 
     /**
      * Contraseña del usuario
@@ -50,13 +50,13 @@ public class Usuario
 
     /**
      * Constructor de la clase con argumentos
-     * @param nombre Nombre del usuario
+     * @param usuario Nombre del usuario
      * @param contraseña Constraseña del usuario
      * @param tipo Tipo de usuario
      */
-    public Usuario(String nombre, String contraseña, TipoUsuario tipo)
+    public Usuario(String usuario, String contraseña, TipoUsuario tipo)
     {
-        this.nombre = nombre;
+        this.usuario = usuario;
         this.contraseña = contraseña;
         this.tipo = tipo;
     }
@@ -86,20 +86,20 @@ public class Usuario
 
     /**
      * Devuelve el nombre de usuario
-     * @return nombre Nombre del usuario
+     * @return usuario Nombre del usuario
      */
-    public String getNombre()
+    public String getUsuario()
     {
-        return nombre;
+        return usuario;
     }
 
     /**
-     * Modifica el nombre del usuario
-     * @param nombre Nuevo nombre de usuario
+     * Modifica el usuario
+     * @param usuario Nuevo nombre de usuario
      */
-    public void setNombre(String nombre)
+    public void setUsuario(String usuario)
     {
-        this.nombre = nombre;
+        this.usuario = usuario;
     }
 
     /**

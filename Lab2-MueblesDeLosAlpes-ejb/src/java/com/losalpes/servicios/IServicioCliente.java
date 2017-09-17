@@ -29,7 +29,7 @@ public interface IServicioCliente
 
     /**
      * Elimina un cliente al sistema
-     * @param cliente cliente a eliminar
+     * @param cliente Cliente a eliminar
      */
     public void eliminarCliente(Cliente cliente);
     
@@ -38,5 +38,11 @@ public interface IServicioCliente
      * @return clientes Lista de clientes
      */
     public List<Cliente> darClientes();
+    
+    /**
+     * Devuelve el cliente identificado por el usuario
+     * @return cliente Cliente identificado por el usuario ingresado
+     */
+    public Cliente obtenerCliente(String usuario);
     
 }

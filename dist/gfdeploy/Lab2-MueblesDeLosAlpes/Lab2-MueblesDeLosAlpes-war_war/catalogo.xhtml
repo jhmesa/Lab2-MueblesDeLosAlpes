@@ -9,13 +9,15 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:param name="titulo" value="Catálogo de Muebles" />
     <ui:define name="body">
+        <p:growl id="growlCatalogo" showDetail="true" sticky="true" /> 
         <h:form id="formCatalogo">
 
             <!-- Panel para agregar un nuevo mueble -->
             <p:panel>
-                <h:panelGrid  columns="6" cellpadding="5">
+                <!-- Se renderiza solo si el usuario es Administrador -->
+                <h:panelGrid  rendered="#{loginBean.esAdministrador}" columns="6" cellpadding="5">
                     <p:outputLabel for="TxtReferencia" style="width: 100px;"
                                    value="Referencia"/>
                     <p:inputText id="TxtReferencia"
@@ -49,7 +51,6 @@
                                      label="Descripción"
                                      >
                         <f:validateLength minimum="1"/>
-
                     </p:inputTextarea>
                     <h:message id="descMsg" for="TxtDescripcion" />
 
@@ -60,10 +61,19 @@
                     <h:message id="tipoMsg" for="TxtTipo" />
 
 
+                    <p:outputLabel for="TxtPrecio" value="Precio Venta"  style="width: 100px;"/>
+                    <p:inputText id="TxtPrecio"
+                                     value="#{catalogoBean.mueble.precio}" style="width: 192px;"
+                                     label="Precio Venta"
+                                     >
+                        <f:convertNumber type="currency" currencySymbol="$" locale="en-US" />
+                    </p:inputText>
+                    <h:message id="precioMsg" for="TxtPrecio" />
+                    
                 </h:panelGrid>
 
 
-                <h:panelGrid columns="6">
+                <h:panelGrid rendered="#{loginBean.esAdministrador}" columns="6">
                     <h:commandButton  value="Agregar"  action="#{catalogoBean.agregarMueble}" />
                     <h:commandButton value="Limpiar"  action="#{catalogoBean.limpiar}" />  
                 </h:panelGrid>
@@ -85,20 +95,33 @@
                 resizableColumns="true"
                 rows="5">
 
-                <p:column headerText="Referencia" sortBy="#{file.referencia}">
+                <p:column filterBy="#{file.referencia}" filterMatchMode="contains" headerText="Referencia" sortBy="#{file.referencia}">
                     <h:outputText value="#{file.referencia}" />
                 </p:column>
 
-                <p:column headerText="Nombre">
+                <p:column filterBy="#{file.nombre}" filterMatchMode="contains" headerText="Nombre">
                     <h:outputText value="#{file.nombre}" />
                 </p:column>
 
-                <p:column headerText="Descripción">
+                <p:column filterBy="#{file.descripcion}" filterMatchMode="contains" headerText="Descripción">
                     <h:outputText value="#{file.descripcion}" />
                 </p:column>
 
-                <p:column headerText="Tipo">
+                <p:column filterBy="#{file.tipo}" filterMatchMode="exact" headerText="Tipo">
                     <h:outputText value="#{file.tipo}" />
+                </p:column>
+                
+                <p:column filterBy="#{file.precio}" filterMatchMode="contains" headerText="Precio">
+                    <h:outputText value="#{file.precio}">
+                        <f:convertNumber type="currency" currencySymbol="$" locale="en-US" />
+                    </h:outputText>
+                </p:column>
+                
+                <!-- Se renderiza solo si el usuario no es Administrador -->
+                <p:column headerText="" rendered="#{!loginBean.esAdministrador}">
+                    <p:commandButton actionListener="#{carroComprasBean.agregarMuebleCarro(file)}" id="iconOnly" update="growlCatalogo" icon="ui-icon-cart" title="Agregar a carrito" />
+                    
+                    
                 </p:column>
 
             </p:dataTable>

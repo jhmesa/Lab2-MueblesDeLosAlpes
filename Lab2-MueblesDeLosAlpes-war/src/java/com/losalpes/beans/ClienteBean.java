@@ -20,6 +20,7 @@ import com.losalpes.servicios.IServicioSeguridad;
 import com.losalpes.servicios.ServicioClienteMock;
 import com.losalpes.servicios.ServicioSeguridadMock;
 import java.util.List;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 
@@ -28,6 +29,7 @@ import javax.faces.bean.ManagedBean;
  * 
  */
 @ManagedBean
+@ApplicationScoped
 public class ClienteBean
 {
 
@@ -50,11 +52,7 @@ public class ClienteBean
      */
     private IServicioSeguridad servicioSeguridad;    
     
-    /**
-     * Representa el usuario
-     */
-    private Usuario usuario;    
-
+    
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
@@ -67,7 +65,6 @@ public class ClienteBean
         cliente=new Cliente();
         catalogoCliente=new ServicioClienteMock();
         servicioSeguridad = new ServicioSeguridadMock();
-        usuario = new Usuario();
     }
 
     //-----------------------------------------------------------
@@ -101,22 +98,7 @@ public class ClienteBean
         return catalogoCliente.darClientes();
     }
     
-    /**
-     * Modifica el objeto usuario
-     * @param usuario Nuevo Usuario
-     */
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    /**
-     * Modifica el objeto usuario
-     * @param usuario Nuevo Usuario
-     */
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
+    
     //-----------------------------------------------------------
     // Métodos
     //-----------------------------------------------------------
@@ -126,11 +108,11 @@ public class ClienteBean
      */
     public void agregarCliente()
     {
-        catalogoCliente.agregarCliente(cliente);
-        usuario.setTipo(TipoUsuario.CLIENTE);
+        cliente.setTipo(TipoUsuario.CLIENTE);
+        catalogoCliente.agregarCliente(cliente); 
+        Usuario usuario = new Usuario(cliente.getUsuario(), cliente.getContraseña(), TipoUsuario.CLIENTE);
         servicioSeguridad.addUser(usuario);
         cliente=new Cliente();
-        usuario = new Usuario();
     }
 
     /**
@@ -138,7 +120,6 @@ public class ClienteBean
      */
     public void limpiar()
     {        cliente=new Cliente();
-        usuario = new Usuario();
     }   
 
 }

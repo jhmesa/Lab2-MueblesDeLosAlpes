@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Carro de Compras" />
+    <ui:define name="body">
+        <p:growl id="growl" showDetail="true" sticky="true" /> 
+        <h:form id="formCarro">
+            
+            <h:panelGrid  columns="6">
+                <h:commandButton  value="Pagar"  action="#{carroComprasBean.pagar}" />
+                    <h:commandButton value="Limpiar"  action="#{carroComprasBean.limpiar}" />  
+            </h:panelGrid>
+            
+                      
+            
+            <!-- Se crea una tabla donde se presentan los muebles del carrito de compras -->
+            <p:dataTable
+                id="data"
+                value="#{carroComprasBean.itemsMuebles}"
+                sortBy="#{item.carro}"
+                var="item"
+                scrollable="false"
+                scrollHeight="100px"
+                paginator="true"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                resizableColumns="true"
+                rows="5">
+
+                <p:column headerText="Cantidad">
+                    <h:outputText value="#{item.cantidad}" />
+                </p:column>
+
+                <p:column headerText="Referencia" sortBy="#{item.mueble.referencia}">
+                    <h:outputText value="#{item.mueble.referencia}" />
+                </p:column>
+
+                <p:column  headerText="Nombre">
+                    <h:outputText value="#{item.mueble.nombre}" />
+                </p:column>
+
+                <p:column  headerText="Descripción">
+                    <h:outputText value="#{item.mueble.descripcion}" />
+                </p:column>
+
+                <p:column  headerText="Tipo">
+                    <h:outputText value="#{item.mueble.tipo}" />
+                </p:column>
+
+                <p:column  headerText="Valor">
+                    <h:outputText value="#{item.precio}">
+                        <f:convertNumber type="currency" currencySymbol="$" locale="en-US" />
+                    </h:outputText>
+                </p:column>
+
+
+                <!-- Elimina los items -->
+                <p:column headerText="">
+                    <p:commandButton actionListener="#{carroComprasBean.eliminarMuebleCarro(item)}" id="iconOnly" update="growl, formCarro" icon="ui-icon-closethick" title="Eliminar mueble del carrito" />
+
+                </p:column> 
+
+
+                <p:summaryRow>
+                        
+                    <p:column colspan="4" style="text-align:right">
+                        <h:outputText value="Total:" />
+                    </p:column>
+                    <p:column colspan="3" style="text-align:right">
+                        <h:outputText value="#{carroComprasBean.valorTotal}">
+                            <f:convertNumber type="currency" currencySymbol="$" />
+                        </h:outputText>
+                    </p:column>
+                </p:summaryRow>
+
+
+            </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

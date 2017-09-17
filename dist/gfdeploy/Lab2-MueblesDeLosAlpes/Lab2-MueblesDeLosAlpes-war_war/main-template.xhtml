@@ -24,12 +24,17 @@
                         <center>
                             <h:form>
                                 <!-- Menu -->
-                                <p:breadCrumb rendered="#{loginBean.esAdministrador}">
+                                <p:breadCrumb rendered="#{loginBean.esUsuarioLogeado}">
                                     <p:menuitem value="" url="/faces/catalogo.xhtml" />
                                     <p:menuitem value="Muebles" url="/faces/catalogo.xhtml" />
-                                    <p:menuitem value="Clientes" url="/faces/cliente.xhtml" />
+                                    <p:menuitem value="Clientes" url="/faces/cliente.xhtml" rendered="#{loginBean.esAdministrador}"/>
+                                    <p:menuitem value="Carro de Compras" url="/faces/carro.xhtml" rendered="#{!loginBean.esAdministrador}"/>
                                     <p:menuitem value="Salir" action="#{loginBean.logout}" />
                                 </p:breadCrumb>
+                                
+                                <!-- Titulo para la pantallas -->
+                                <h2 style="margin-top:0">#{titulo}</h2>                                
+                                
                             </h:form>
                             <ui:insert name="body" />
                         </center>           

@@ -12,9 +12,7 @@
 
 package com.losalpes.servicios;
 
-import com.losalpes.bos.Cliente;
-import com.losalpes.bos.Mueble;
-import com.losalpes.bos.TipoMueble;
+import com.losalpes.bos.Cliente;;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +32,18 @@ public class ServicioClienteMock implements IServicioCliente
     /**
      * Arreglo con los clientes del sistema
      */
-    private ArrayList<Cliente> clientes;
+    private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    
+    static{
+        
+        //Agrega los muebles del sistema
+        clientes.add(new Cliente("cedula", 1012, "Pepito Perez", 5388912,
+                    318893566, "Calle 100", "Bogotá D.C.", "Bogotá D.C.",
+                    "Colombia", "Ingeniero", "pepito@gmail.com"));
+        clientes.add(new Cliente("cedula", 1013, "Juanito Gomez", 5388913,
+                    318893523, "Calle 200", "Bogotá D.C.", "Bogotá D.C.",
+                    "Colombia", "Abogado", "juanito@gmail.com"));
+    }
 
     //-----------------------------------------------------------
     // Constructor
@@ -45,17 +54,7 @@ public class ServicioClienteMock implements IServicioCliente
      */
     public ServicioClienteMock()
     {
-
-        //Inicializa el arreglo de los clientes
-        clientes=new ArrayList<Cliente>();
-
-        //Agrega los muebles del sistema
-        clientes.add(new Cliente("cedula", 1012, "Pepito Perez", 5388912,
-                    318893566, "Calle 100", "Bogotá D.C.", "Bogotá D.C.",
-                    "Colombia", "Ingeniero", "pepito@gmail.com"));
-        clientes.add(new Cliente("cedula", 1013, "Juanito Gomez", 5388913,
-                    318893523, "Calle 200", "Bogotá D.C.", "Bogotá D.C.",
-                    "Colombia", "Abogado", "juanito@gmail.com"));
+     
        
     }
 
@@ -90,5 +89,21 @@ public class ServicioClienteMock implements IServicioCliente
     {
         return clientes;
     }
+
+    /**
+     * Devuelve el cliente identificado por el usuario
+     * @return cliente Cliente identificado por el usuario ingresado
+     */
+    @Override
+    public Cliente obtenerCliente(String usuario) {
+        for (Cliente cliente : clientes) {
+            if(cliente.getUsuario()!= null 
+                    && cliente.getUsuario().equalsIgnoreCase(usuario)){
+                return cliente;
+            }
+            
+        }
+        return null;
+     }
 
 }

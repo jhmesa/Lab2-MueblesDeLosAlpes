@@ -65,14 +65,14 @@ public class ServicioCatalogoMockTest
         muebles=new ArrayList<Mueble>();
 
         //Agrega los muebles de prueba
-        muebles.add(new Mueble("RF1","Silla clásica","Una confortable silla con estilo del siglo XIX.",TipoMueble.Interior));
-        muebles.add(new Mueble("RF2","Silla moderna","Lo último en la moda de interiores. Esta silla le brindará la comodidad e innovación que busca",TipoMueble.Interior));
-        muebles.add(new Mueble("RF3","Mesa de jardín","Una bella mesa para comidas y reuniones al aire libre.",TipoMueble.Exterior));
-        muebles.add(new Mueble("RF4","Sillón new wave","Innovador y cómodo. No existen mejores palabras para describir este hermoso sillón.",TipoMueble.Interior));
-        muebles.add(new Mueble("RF5","Mesa para comedor","Sus cenas no tendrán mejor acompañante. Una mesa para seis personas con un hermoso diseño clásico.",TipoMueble.Interior));
-        muebles.add(new Mueble("RF6","Cama king","Una hermosa cama hecha en cedro para dos personas. Sus sueños no volveran a ser iguales.",TipoMueble.Interior));
-        muebles.add(new Mueble("RF7","Silla de jardín","Una bella silla para comidas y reuniones al aire libre.",TipoMueble.Exterior));
-        muebles.add(new Mueble("RF8","Camarote junior","Con diseño moderno. Sus hijos ahora podrán tener unos felices sueños.",TipoMueble.Interior));
+        muebles.add(new Mueble("RF1","Silla clásica","Una confortable silla con estilo del siglo XIX.",TipoMueble.Interior, 0D));
+        muebles.add(new Mueble("RF2","Silla moderna","Lo último en la moda de interiores. Esta silla le brindará la comodidad e innovación que busca",TipoMueble.Interior, 0D));
+        muebles.add(new Mueble("RF3","Mesa de jardín","Una bella mesa para comidas y reuniones al aire libre.",TipoMueble.Exterior, 0D));
+        muebles.add(new Mueble("RF4","Sillón new wave","Innovador y cómodo. No existen mejores palabras para describir este hermoso sillón.",TipoMueble.Interior, 0D));
+        muebles.add(new Mueble("RF5","Mesa para comedor","Sus cenas no tendrán mejor acompañante. Una mesa para seis personas con un hermoso diseño clásico.",TipoMueble.Interior,0D));
+        muebles.add(new Mueble("RF6","Cama king","Una hermosa cama hecha en cedro para dos personas. Sus sueños no volveran a ser iguales.",TipoMueble.Interior,0D));
+        muebles.add(new Mueble("RF7","Silla de jardín","Una bella silla para comidas y reuniones al aire libre.",TipoMueble.Exterior,0D));
+        muebles.add(new Mueble("RF8","Camarote junior","Con diseño moderno. Sus hijos ahora podrán tener unos felices sueños.",TipoMueble.Interior,0D));
                 
     }
 
@@ -96,7 +96,7 @@ public class ServicioCatalogoMockTest
     public void testAgregarMueble()
     {
         System.out.println("agregarMueble");
-        Mueble mueble = new Mueble("RFPrueba","SillaTest","Una confortable silla.",TipoMueble.Interior);
+        Mueble mueble = new Mueble("RFPrueba","SillaTest","Una confortable silla.",TipoMueble.Interior, 0D);
         ServicioCatalogoMock instance = new ServicioCatalogoMock();
         int actual=instance.darMuebles().size();
         instance.agregarMueble(mueble);

@@ -13,7 +13,7 @@ package com.losalpes.bos;
 /**
  * Clase que representa la información de un cliente en el sistema
  */
-public class Cliente {
+public class Cliente extends Usuario{
     
     //-----------------------------------------------------------
     // Atributos
