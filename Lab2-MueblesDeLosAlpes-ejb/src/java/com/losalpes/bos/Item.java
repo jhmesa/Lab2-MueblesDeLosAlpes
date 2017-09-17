@@ -11,6 +11,8 @@
 
 package com.losalpes.bos;
 
+import java.util.Date;
+
 /**
  * Clase que representa la información de un item de carrito de compras en el sistema
  */
@@ -40,6 +42,9 @@ public class Item
      * Referencia del objeto mueble
      */
     private Mueble mueble;
+    
+    
+    private Date fechaVenta;
 
     //-----------------------------------------------------------
     // Constructores
@@ -126,6 +131,14 @@ public class Item
      */
     public String getCarro() {
         return carro;
+    }
+
+    public Date getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(Date fechaVenta) {
+        this.fechaVenta = fechaVenta;
     }
     
     

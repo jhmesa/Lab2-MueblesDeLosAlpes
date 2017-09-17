@@ -12,8 +12,8 @@
         <h:form id="formCarro">
             
             <h:panelGrid  columns="6">
-                <h:commandButton  value="Pagar"  action="#{carroComprasBean.pagar}" />
-                    <h:commandButton value="Limpiar"  action="#{carroComprasBean.limpiar}" />  
+                <h:commandButton  value="Pagar"  action="#{ventaBean.pagar(carroComprasBean.login.usuario, carroComprasBean.itemsMuebles)}"/>
+                <h:commandButton value="Limpiar"  action="#{carroComprasBean.limpiar}" />  
             </h:panelGrid>
             
                       

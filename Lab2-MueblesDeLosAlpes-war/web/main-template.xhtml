@@ -29,6 +29,7 @@
                                     <p:menuitem value="Muebles" url="/faces/catalogo.xhtml" />
                                     <p:menuitem value="Clientes" url="/faces/cliente.xhtml" rendered="#{loginBean.esAdministrador}"/>
                                     <p:menuitem value="Carro de Compras" url="/faces/carro.xhtml" rendered="#{!loginBean.esAdministrador}"/>
+                                    <p:menuitem value="Reportes" url="/faces/reporte.xhtml" rendered="#{loginBean.esAdministrador}"/>
                                     <p:menuitem value="Salir" action="#{loginBean.logout}" />
                                 </p:breadCrumb>
                                 

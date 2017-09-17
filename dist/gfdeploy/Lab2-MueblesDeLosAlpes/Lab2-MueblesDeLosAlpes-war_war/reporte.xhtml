@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Reportes" />
+    <ui:define name="body">
+        <p:growl id="growl" showDetail="true" sticky="true" /> 
+        <h:form>
+            
+                       
+            <!-- Se crea una tabla donde se presentan las ventas diarias -->
+            <p:dataTable 
+                
+                value="#{ventaBean.itemsVendidos}"                
+                var="item"
+                scrollable="false"
+                scrollHeight="100px"
+                paginator="true"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                resizableColumns="true"
+                rows="5">
+
+               <!-- <p:column headerText="Fecha" sortBy="#{item.fechaVenta}">
+                    <h:outputText value="#{item.fechaVenta}" />
+                </p:column>-->
+                
+                <p:column headerText="Tipo" sortBy="#{item.mueble.tipo}">
+                    <h:outputText value="#{item.mueble.tipo}" />
+                </p:column>
+
+                <p:column headerText="Nombre" sortBy="#{item.mueble.nombre}">
+                    <h:outputText value="#{item.mueble.nombre}" />
+                </p:column>
+
+                <p:column  headerText="Precio Unitario" sortBy="#{item.mueble.precio}">
+                    <h:outputText value="#{item.mueble.precio}" />
+                </p:column>
+
+                <p:column  headerText="Precio Total" sortBy="#{item.precio}">
+                    <h:outputText value="#{item.precio}" />
+                </p:column>
+
+               
+
+
+
+            </p:dataTable>
+
+            
+            
+            <!-- Se crea una tabla donde se presentan las ventas registradas -->
+            <p:dataTable 
+                id="data"
+                value="#{ventaBean.ventas}"                
+                var="venta"
+                scrollable="false"
+                scrollHeight="100px"
+                paginator="true"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                resizableColumns="true"
+                rows="5">
+
+                <p:column headerText="Fecha" sortBy="#{venta.fechaVenta}">
+                    <h:outputText value="#{venta.fechaVenta}" />
+                </p:column>
+
+                <p:column headerText="Cliente" sortBy="#{venta.cliente.nombre}">
+                    <h:outputText value="#{venta.cliente.nombre}" />
+                </p:column>
+
+                <p:column  headerText="Mueble">
+                    <h:outputText value="#{venta.itemsMuebles}" />
+                </p:column>
+
+                <p:column  headerText="Valor">
+                    <h:outputText value="#{venta.precioVenta}" />
+                </p:column>
+
+               
+
+
+            </p:dataTable>
+            
+            
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+
