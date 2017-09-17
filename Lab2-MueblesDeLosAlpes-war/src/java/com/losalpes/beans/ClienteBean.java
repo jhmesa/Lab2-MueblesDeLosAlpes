@@ -20,8 +20,12 @@ import com.losalpes.servicios.IServicioSeguridad;
 import com.losalpes.servicios.ServicioClienteMock;
 import com.losalpes.servicios.ServicioSeguridadMock;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 
 /**
@@ -121,5 +125,25 @@ public class ClienteBean
     public void limpiar()
     {        cliente=new Cliente();
     }   
+    
+    public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Cliente editado", String.valueOf(((Cliente) event.getObject()).getNumDocumento()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edición cancelada", String.valueOf(((Cliente) event.getObject()).getNumDocumento()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
 
 }

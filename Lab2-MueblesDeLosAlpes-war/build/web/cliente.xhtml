@@ -166,7 +166,8 @@
             </p:panel>
         </h:form>
 
-        <h:form>
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
             <!-- Se crea una tabla donde se presentan los clientes del sistema -->
             <p:dataTable
                 id="data"
@@ -179,38 +180,63 @@
                 resizableColumns="true"
                 rows="5"
                 emptyMessage="No hay clientes que cumplan el filtro"
+                editable="true"
                 >
+                
+                <p:ajax event="rowEdit" listener="#{client.onRowEdit}" update=":form:msgs" />
+                <p:ajax event="rowEditCancel" listener="#{client.onRowCancel}" update=":form:msgs" />
+       
+                <p:column headerText="tipoDocumento">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{client.tipoDocumento}" /></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu style="width: 192px;" required="true" id ="comboTipoDoc" value="#{client.tipoDocumento}">
+                                <f:selectItem itemLabel="Seleccione" itemValue="" />
+                                <f:selectItem itemLabel="Cédula" itemValue="Cédula" />
+                                <f:selectItem itemLabel="Nit" itemValue="Nit" />
+                            </p:selectOneMenu></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                       
+                <p:column headerText="numDocumento">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{client.numDocumento}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{client.numDocumento}" /></f:facet>
+                    </p:cellEditor>
+                </p:column>
 
+                <p:column headerText="nombre">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{client.nombre}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{client.nombre}" /></f:facet>
+                    </p:cellEditor>
+                </p:column>
                 
-                
-                <p:column filterBy="#{client.tipoDocumento}" headerText="Tipo Documento" filterMatchMode="exact" sortBy="#{client.tipoDocumento}">
-                    <h:outputText value="#{client.tipoDocumento}" />
+                <p:column headerText="email">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{client.email}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{client.email}"  style="width:100%"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
 
-                <p:column filterBy="#{client.numDocumento}" headerText="Número Documento" filterMatchMode="contains" sortBy="#{client.numDocumento}">
-                    <h:outputText value="#{client.numDocumento}" />
-                </p:column>
-
-                <p:column filterBy="#{client.nombre}" headerText="Nombre" filterMatchMode="contains" sortBy="#{client.nombre}">
-                    <h:outputText value="#{client.nombre}" />
-                </p:column>
-                
-                <p:column filterBy="#{client.email}" headerText="Email" filterMatchMode="contains" sortBy="#{client.email}">
-                    <h:outputText value="#{client.email}" />
-                </p:column>
-
-                <p:column filterBy="#{client.ciudad}" headerText="Ciudad" filterMatchMode="contains" sortBy="#{client.ciudad}">
-                    <h:outputText value="#{client.ciudad}" />
+                <p:column headerText="ciudad">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{client.ciudad}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{client.ciudad}" style="width:100%" /></f:facet>
+                    </p:cellEditor>
                 </p:column>
                 
-                <p:column filterBy="#{client.pais}" headerText="País" filterMatchMode="contains" sortBy="#{client.pais}">
-                    <h:outputText value="#{client.pais}" />
+                <p:column headerText="pais">
+                    <p:cellEditor>
+                         <f:facet name="output"><h:outputText value="#{client.pais}" /></f:facet>
+                         <f:facet name="input"><p:inputText id="modelInput" value="#{client.pais}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
-                
+                <p:column style="width:32px">
+                    <p:rowEditor />
+                </p:column>
             </p:dataTable>
-
         </h:form>
     </ui:define>
-
 </ui:composition>
 
