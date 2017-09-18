@@ -152,19 +152,12 @@ public class VentaBean {
             mensaje = "El cliente " + cliente.getNombre() + " ha sido borrado.";
             ServicioClienteMock servicio = new ServicioClienteMock();
             servicio.eliminarCliente(cliente);
-<<<<<<< HEAD
         } else {
             mensaje = "El cliente " + cliente.getNombre() + " no se puede borrar por que tiene ventas registradas.";
         }
 
         FacesMessage msg = new FacesMessage("Mensaje", mensaje);
         FacesContext.getCurrentInstance().addMessage(null, msg);
-
-=======
-            
-            FacesMessage msg = new FacesMessage("Cliente borrado", "El cliente " + cliente.getNombre() + " ha sido borrado.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }   
->>>>>>> 8756c463d9ac1f7d9370f1e8e61fa7e93a3e4a30
+        
     }
 }
