@@ -124,28 +124,29 @@ public class VentaBean {
      * Método para el borrado de los clientes
      * @param cliente cliente que va a ser borado
      */
-     public void deleteClient(Cliente cliente){
-        
+     public void deleteClient(Cliente cliente) {
+
         // se verifica si el cliente a borrar ha tendio alguna compra
         Boolean borrar = true;
-        for(Venta venta: this.ventas)
-        {
-            if(venta.getCliente().getNumDocumento() == cliente.getNumDocumento() && venta.getCliente().getTipoDocumento()== cliente.getTipoDocumento() ){
+        for (Venta venta : this.ventas) {
+            if (venta.getCliente().getNumDocumento() == cliente.getNumDocumento() && venta.getCliente().getTipoDocumento() == cliente.getTipoDocumento()) {
                 borrar = false;
             }
         }
-        
+
         // de no tener compras se procede con el borrado a través del servicio de clientes
-        if(borrar)
-        {
+        String mensaje = "";
+        if (borrar) {
+            mensaje = "El cliente " + cliente.getNombre() + " ha sido borrado.";
             ServicioClienteMock servicio = new ServicioClienteMock();
             servicio.eliminarCliente(cliente);
-            
-            FacesMessage msg = new FacesMessage("Cliente borrado", "El cliente " + cliente.getNombre() + " ha sido borrado.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+        } else {
+            mensaje = "El cliente " + cliente.getNombre() + " no se puede borrar por que tiene ventas registradas.";
         }
-        
-        
+
+        FacesMessage msg = new FacesMessage("Mensaje", mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+
     }
     
 }

@@ -103,7 +103,7 @@ public class LoginBean
                 
             }
             setEsUsuarioLogeado(true);
-            return "catalogo.xhtml";
+            return "success";
         }
         catch (AutenticacionException ex)
         {
@@ -121,7 +121,7 @@ public class LoginBean
     public String logout()
     {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "index.xhtml";
+        return "success";
     }
     
     //-----------------------------------------------------------
