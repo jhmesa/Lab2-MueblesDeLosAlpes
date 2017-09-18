@@ -79,16 +79,9 @@ public class VentaBean {
             im.setCliente(cliente.getNombre());
             valorTotal += im.getPrecio();
             agregarItemAVendidos(im);
-        }
-<<<<<<< HEAD
-      
-=======
-       
-        ServicioClienteMock servicio = new ServicioClienteMock();
+        }      
 
         // se agrega venta a arreglo de ventas
-        Cliente cliente = servicio.obtenerCliente(usuario);
->>>>>>> 14508389cd4b1d512572bcd8fec14c1297146c88
         Venta venta = new Venta(cliente, items, valorTotal, new Date());
         getVentas().add(venta);
 
@@ -102,21 +95,15 @@ public class VentaBean {
      * Método para agregar las ventas al arreglo
      * @param im item a agregar a la lista
      */
-    public void agregarItemAVendidos(Item im) {
-        
-<<<<<<< HEAD
-=======
+    public void agregarItemAVendidos(Item im) {       
+
         // se valida si ya este item ha sido vendido con anterioridad
->>>>>>> 14508389cd4b1d512572bcd8fec14c1297146c88
         if (getItemsVendidos().isEmpty()) {
-            // se inserta uno si no se ha vendido alguno en algún moemnto
+            // se inserta uno si no se ha vendido alguno en algún momento
             getItemsVendidos().add(im);
         } else {
-<<<<<<< HEAD
             Agregar:
-=======
             // se suma al contado del item la nueva venta
->>>>>>> 14508389cd4b1d512572bcd8fec14c1297146c88
             for (Item item : getItemsVendidos()) {
                 if (item.getMueble().getReferencia().equalsIgnoreCase(im.getMueble().getReferencia())) {
                     // Aumentamos la cantidad del item
