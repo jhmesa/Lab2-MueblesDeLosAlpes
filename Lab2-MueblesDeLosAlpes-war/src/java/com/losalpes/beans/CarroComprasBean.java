@@ -149,6 +149,10 @@ public class CarroComprasBean {
         context.addMessage(null, new FacesMessage("Éxito", mensaje));
     }
 
+    /***
+     * Calcula el valor total de la compra
+     * @return valor calculado
+     */
     public Double getValorTotal() {
 
         for (Item im : getItemsMuebles()) {
@@ -159,6 +163,9 @@ public class CarroComprasBean {
     }
 
   
+    /**
+     * Limpieza del carrito de compras para que quede listo para una nueva compra
+     */
     public void limpiar() {
         setItmsMuebles(new ArrayList<Item>());
         // Mensaje al usuario de limpieza del carrito de compras
@@ -166,5 +173,4 @@ public class CarroComprasBean {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Éxito", mensaje));
     }
-
 }

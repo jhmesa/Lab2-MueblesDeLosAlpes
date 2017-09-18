@@ -46,14 +46,26 @@ public class VentaBean {
         itemsVendidos = new ArrayList<>();
     }
 
+    /**
+     * obtiene las ventas 
+     * @return ventas realizadas
+     */
     public List<Venta> getVentas() {
         return ventas;
     }
 
+    /**
+     * setea las ventas 
+     * @param ventas ventas realizadas
+     */
     public void setVentas(List<Venta> ventas) {
         this.ventas = ventas;
     }
 
+    /**
+     * obtiene los Items vendidos
+     * @return items vendidos
+     */
     public List<Item> getItemsVendidos() {
         return itemsVendidos;
     }
@@ -143,9 +155,6 @@ public class VentaBean {
             
             FacesMessage msg = new FacesMessage("Cliente borrado", "El cliente " + cliente.getNombre() + " ha sido borrado.");
             FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-        
-        
+        }   
     }
-    
 }
