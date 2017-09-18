@@ -36,13 +36,17 @@ public class ServicioClienteMock implements IServicioCliente
     
     static{
         
+        
         //Agrega los muebles del sistema
+        clientes.add(new Cliente("cedula", 1, "client", 1,
+                    4, "Calle 100", "Bogotá D.C.", "Bogotá D.C.",
+                    "Colombia", "Gerente", "client@gmail.com", "client"));    
         clientes.add(new Cliente("cedula", 1012, "Pepito Perez", 5388912,
                     318893566, "Calle 100", "Bogotá D.C.", "Bogotá D.C.",
-                    "Colombia", "Ingeniero", "pepito@gmail.com"));
+                    "Colombia", "Ingeniero", "pepito@gmail.com", "pepito"));
         clientes.add(new Cliente("cedula", 1013, "Juanito Gomez", 5388913,
                     318893523, "Calle 200", "Bogotá D.C.", "Bogotá D.C.",
-                    "Colombia", "Abogado", "juanito@gmail.com"));
+                    "Colombia", "Abogado", "juanito@gmail.com", "juanito"));
     }
 
     //-----------------------------------------------------------

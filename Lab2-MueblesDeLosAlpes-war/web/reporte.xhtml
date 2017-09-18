@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='iso-8859-1'?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition template="/main-template.xhtml"
-               
+
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
@@ -11,13 +11,14 @@
     <ui:define name="body">
         <p:growl id="growl" showDetail="true" sticky="true" /> 
         <h:form>
-            
-            <!-- Titulo para la tabla del reporte de ventas diarias -->             
-            <h:outputLabel  style="font-size: 14"> Reporte ventas diarias </h:outputLabel>
-            
-            <!-- Se crea una tabla donde se presentan las ventas diarias -->
+          
+            <h:outputLabel  style="font-size: 14"> Reporte ventas </h:outputLabel>
+
+            <!-- Tabla dinamica con filtros en donde se pueden generar los diferentes reportes de venta solicitados en el enunciado -->
             <p:dataTable 
-                
+
+                sortBy="#{item.mueble.tipo}"
+                widgetVar="ventasDiarias"
                 value="#{ventaBean.itemsVendidos}"                
                 var="item"
                 scrollable="false"
@@ -27,68 +28,59 @@
                 resizableColumns="true"
                 rows="5">
 
-               <!-- <p:column headerText="Fecha" sortBy="#{item.fechaVenta}">
-                    <h:outputText value="#{item.fechaVenta}" />
-                </p:column>-->
-                
-                <p:column headerText="Tipo" sortBy="#{item.mueble.tipo}">
+                <p:column filterBy="#{item.mueble.tipo}"  filterMatchMode="exact" headerText="Tipo" sortBy="#{item.mueble.tipo}">
+                    <f:facet name="filter">                        
+                        <p:selectOneMenu onchange="PF('ventasDiarias').filter()">
+                            <f:selectItem itemLabel="Todos" itemValue="" />
+                            <f:selectItem itemLabel="Interior" itemValue="Interior" />
+                            <f:selectItem itemLabel="Exterior" itemValue="Exterior" />
+                        </p:selectOneMenu>                       
+
+                    </f:facet>
                     <h:outputText value="#{item.mueble.tipo}" />
                 </p:column>
+
+
+                <p:column filterBy="#{item.fechaVenta}" headerText="Fecha" sortBy="#{item.fechaVenta}"  filterMatchMode="contains">
+                    <p:outputLabel value="#{item.fechaVenta}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:outputLabel>   
+                </p:column>         
+
+
+                <p:column filterBy="#{item.mueble.referencia}" filterMatchMode="contains" headerText="Referencia" sortBy="#{item.mueble.referencia}">
+                    <h:outputText value="#{item.mueble.referencia}" />
+                </p:column>
+                
 
                 <p:column headerText="Nombre" sortBy="#{item.mueble.nombre}">
                     <h:outputText value="#{item.mueble.nombre}" />
                 </p:column>
+                
 
                 <p:column  headerText="Cantidad" sortBy="#{item.cantidad}">
                     <h:outputText value="#{item.cantidad}" />
                 </p:column>
                 
+
+                <p:column filterBy="#{item.ciudad}" filterMatchMode="contains" headerText="Ciudad" sortBy="#{item.ciudad}">
+                    <h:outputText value="#{item.ciudad}" />
+                </p:column>
+
+
+                <p:column filterBy="#{item.cliente}" filterMatchMode="contains" headerText="Cliente" sortBy="#{item.cliente}">
+                    <h:outputText value="#{item.cliente}" />
+                </p:column>
+                
+
                 <p:column  headerText="Precio Unitario" sortBy="#{item.mueble.precio}">
                     <h:outputText value="#{item.mueble.precio}" />
                 </p:column>
 
+                
                 <p:column  headerText="Precio Total" sortBy="#{item.precio}">
                     <h:outputText value="#{item.precio}" />
-                </p:column>       
-
-
-
-            </p:dataTable>
-
-            
-            
-            <!-- Titulo para la tabla del reporte de ventas de productos mas vendidos -->
-            <h:outputLabel  style="font-size: 14"> Reporte ventas de productos mas vendidos </h:outputLabel> 
-            
-            <!-- Se crea una tabla donde se presentan las ventas registradas -->
-            <p:dataTable 
-                id="data"
-                value="#{ventaBean.ventas}"                
-                var="venta"
-                scrollable="false"
-                scrollHeight="100px"
-                paginator="true"
-                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                resizableColumns="true"
-                rows="5">
-
-                <p:column headerText="Fecha" sortBy="#{venta.fechaVenta}">
-                    <h:outputText value="#{venta.fechaVenta}" />
-                </p:column>
-
-                <p:column headerText="Cliente" sortBy="#{venta.cliente.nombre}">
-                    <h:outputText value="#{venta.cliente.nombre}" />
-                </p:column>
-
-                <p:column  headerText="Mueble">
-                    <h:outputText value="#{venta.itemsMuebles}" />
-                </p:column>
-
-                <p:column  headerText="Valor">
-                    <h:outputText value="#{venta.precioVenta}" />
-                </p:column>
-
-               
+                </p:column>                
 
 
             </p:dataTable>

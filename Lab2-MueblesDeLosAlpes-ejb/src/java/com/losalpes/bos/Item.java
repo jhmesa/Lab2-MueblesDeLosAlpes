@@ -44,7 +44,11 @@ public class Item
     private Mueble mueble;
     
     
-    private Date fechaVenta;
+    private String fechaVenta;
+    
+    private String ciudad;
+    
+    private String cliente;
 
     //-----------------------------------------------------------
     // Constructores
@@ -133,13 +137,33 @@ public class Item
         return carro;
     }
 
-    public Date getFechaVenta() {
+    public String getFechaVenta() {
         return fechaVenta;
     }
 
-    public void setFechaVenta(Date fechaVenta) {
+    public void setFechaVenta(String fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+   
+    
+    
     
     
 }

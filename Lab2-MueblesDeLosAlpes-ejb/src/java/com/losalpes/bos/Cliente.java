@@ -95,11 +95,12 @@ public class Cliente extends Usuario{
      * @param departamento
      * @param pais
      * @param profesion
-     * @param email 
+     * @param email
+     * @param usuario 
      */
     public Cliente(String tipoDocumento, long numDocumento, String nombre, long telResidencia,
                     long telCelular, String direccion, String ciudad, String departamento,
-                    String pais, String profesion, String email)
+                    String pais, String profesion, String email, String usuario)
     {
         this.tipoDocumento = tipoDocumento;
         this.numDocumento = numDocumento;
@@ -112,6 +113,7 @@ public class Cliente extends Usuario{
         this.pais = pais;
         this.profesion =profesion;
         this.email = email;
+        super.setUsuario(usuario);
         
     }
     

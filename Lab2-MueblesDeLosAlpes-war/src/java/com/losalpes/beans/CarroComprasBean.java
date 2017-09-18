@@ -11,14 +11,10 @@
  */
 package com.losalpes.beans;
 
-import com.losalpes.bos.Cliente;
 import com.losalpes.bos.Item;
 import com.losalpes.bos.Mueble;
-import com.losalpes.bos.Venta;
 import com.losalpes.servicios.IServicioCatalogo;
-import com.losalpes.servicios.ServicioClienteMock;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -81,7 +77,7 @@ public class CarroComprasBean {
      * Constructor de la clase principal
      */
     public CarroComprasBean() {
-        itemsMuebles = new ArrayList<Item>();
+        itemsMuebles = new ArrayList();
         valorTotal = 0.0D;
     }
 

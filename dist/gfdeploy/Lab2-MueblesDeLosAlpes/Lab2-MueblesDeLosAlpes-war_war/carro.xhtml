@@ -8,15 +8,14 @@
 
     <ui:param name="titulo" value="Carro de Compras" />
     <ui:define name="body">
-        <p:growl id="growl" showDetail="true" sticky="true" /> 
+        <p:growl id="growlCarro" showDetail="true" sticky="true" /> 
         <h:form id="formCarro">
             
             <h:panelGrid  columns="6">
-                <h:commandButton  value="Pagar"  action="#{ventaBean.pagar(carroComprasBean.login.usuario, carroComprasBean.itemsMuebles)}" actionListener="#{carroComprasBean.limpiar}"/>
-                    <h:commandButton value="Limpiar"  action="#{carroComprasBean.limpiar}" />  
+                <h:commandButton  value="Pagar"  action="#{ventaBean.pagar(carroComprasBean.login.usuario, carroComprasBean.itemsMuebles)}"/>
+                <h:commandButton value="Limpiar"  action="#{carroComprasBean.limpiar}" />  
             </h:panelGrid>
-            
-                      
+                         
             
             <!-- Se crea una tabla donde se presentan los muebles del carrito de compras -->
             <p:dataTable
@@ -60,7 +59,7 @@
 
                 <!-- Elimina los items -->
                 <p:column headerText="">
-                    <p:commandButton actionListener="#{carroComprasBean.eliminarMuebleCarro(item)}" id="iconOnly" update="growl, formCarro" icon="ui-icon-closethick" title="Eliminar mueble del carrito" />
+                    <p:commandButton actionListener="#{carroComprasBean.eliminarMuebleCarro(item)}" id="iconOnly" update="growlCarro, formCarro" icon="ui-icon-closethick" title="Eliminar mueble del carrito" />
 
                 </p:column> 
 
