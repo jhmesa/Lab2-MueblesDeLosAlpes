@@ -120,12 +120,11 @@ public class VentaBean {
 
     }
     
-    /***
+     /***
      * Método para el borrado de los clientes
      * @param cliente cliente que va a ser borado
      */
      public void deleteClient(Cliente cliente){
-        System.out.println("com.losalpes.beans.ClienteBean.delete()");
         
         // se verifica si el cliente a borrar ha tendio alguna compra
         Boolean borrar = true;
