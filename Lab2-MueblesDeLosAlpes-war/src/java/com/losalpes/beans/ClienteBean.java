@@ -127,16 +127,18 @@ public class ClienteBean
     }   
     
     public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Cliente editado", String.valueOf(((Cliente) event.getObject()).getNumDocumento()));
+        FacesMessage msg = new FacesMessage("Cliente editado", String.valueOf(((Cliente) event.getObject()).getNombre()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      
     public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edición cancelada", String.valueOf(((Cliente) event.getObject()).getNumDocumento()));
+        FacesMessage msg = new FacesMessage("Edición cancelada", String.valueOf(((Cliente) event.getObject()).getNombre()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      
     public void onCellEdit(CellEditEvent event) {
+        
+        System.out.println("El man está entrando");
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
          
@@ -145,5 +147,4 @@ public class ClienteBean
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
-
 }

@@ -72,9 +72,7 @@ public class VentaBean {
             agregarItemAVendidos(im);
             
         }
-
-        
-        
+       
         ServicioClienteMock servicio = new ServicioClienteMock();
 
         Cliente cliente = servicio.obtenerCliente(usuario);
@@ -105,6 +103,29 @@ public class VentaBean {
 
         }
 
+    }
+    
+     public void deleteClient(Cliente cliente){
+        System.out.println("com.losalpes.beans.ClienteBean.delete()");
+        
+        Boolean borrar = true;
+        for(Venta venta: this.ventas)
+        {
+            if(venta.getCliente().getNumDocumento() == cliente.getNumDocumento() && venta.getCliente().getTipoDocumento()== cliente.getTipoDocumento() ){
+                borrar = false;
+            }
+        }
+        
+        if(borrar)
+        {
+            ServicioClienteMock servicio = new ServicioClienteMock();
+            servicio.eliminarCliente(cliente);
+            
+            FacesMessage msg = new FacesMessage("Cliente borrado", "El cliente " + cliente.getNombre() + " ha sido borrado.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+        
+        
     }
     
 }

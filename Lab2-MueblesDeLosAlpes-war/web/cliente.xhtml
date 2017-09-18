@@ -8,8 +8,8 @@
 
     <ui:param name="titulo" value="Clientes" />
     <ui:define name="body">
-
-        <h:form>    
+        
+        <h:form id="formInput">    
 
             <!-- Panel para agregar un nuevo cliente -->
             <p:panel>
@@ -166,7 +166,8 @@
             </p:panel>
         </h:form>
 
-        <h:form id="form">
+        
+        <h:form id="formTablaCliente">
             <p:growl id="msgs" showDetail="true"/>
             <!-- Se crea una tabla donde se presentan los clientes del sistema -->
             <p:dataTable
@@ -183,8 +184,8 @@
                 editable="true"
                 >
                 
-                <p:ajax event="rowEdit" listener="#{client.onRowEdit}" update=":form:msgs" />
-                <p:ajax event="rowEditCancel" listener="#{client.onRowCancel}" update=":form:msgs" />
+                <p:ajax event="rowEdit" listener="#{clienteBean.onRowEdit}" update=":formTablaCliente:msgs" />
+                <p:ajax event="rowEditCancel" listener="#{clienteBean.onRowCancel}" update=":formTablaCliente:msgs" />
        
                 <p:column headerText="tipoDocumento">
                     <p:cellEditor>
@@ -232,8 +233,17 @@
                          <f:facet name="input"><p:inputText id="modelInput" value="#{client.pais}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
+               
+               <!-- Elimina los items -->                 
+               <p:column headerText="">                     
+                   <p:rowEditor />
+               </p:column> 
                 <p:column style="width:32px">
-                    <p:rowEditor />
+                    <p:commandButton action="#{ventaBean.deleteClient(client)}" 
+                                    id="iconOnly" 
+                                    update="formTablaCliente" 
+                                    icon="ui-icon-closethick" 
+                                    title="Eliminar cliente" />                  
                 </p:column>
             </p:dataTable>
         </h:form>
