@@ -114,6 +114,8 @@ public class ClienteBean
     {
         cliente.setTipo(TipoUsuario.CLIENTE);
         catalogoCliente.agregarCliente(cliente); 
+        
+        // se crea el nuevo usuario y se agrega al arreglo de usuarios
         Usuario usuario = new Usuario(cliente.getUsuario(), cliente.getContraseña(), TipoUsuario.CLIENTE);
         servicioSeguridad.addUser(usuario);
         cliente=new Cliente();
@@ -126,22 +128,35 @@ public class ClienteBean
     {        cliente=new Cliente();
     }   
     
+    /***
+     * Evento que se ejecuta al aceptar la modificación de la fila
+     * @param event valores modificados
+     */
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Cliente editado", String.valueOf(((Cliente) event.getObject()).getNombre()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      
+    /***
+     * Evento que se ejecuta al cancelar la modificación de la fila
+     * @param event valores modificados
+     */
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Edición cancelada", String.valueOf(((Cliente) event.getObject()).getNombre()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-     
+
+    /**
+     * Evento que se ejecuta luego de aceptar el cambio en la fula
+     * @param event valores modificados
+     */
     public void onCellEdit(CellEditEvent event) {
         
         System.out.println("El man está entrando");
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
          
+        // se hace el replazo del registro viejo por el registro modificado
         if(newValue != null && !newValue.equals(oldValue)) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);

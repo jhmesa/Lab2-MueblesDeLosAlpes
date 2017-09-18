@@ -183,7 +183,7 @@
                 emptyMessage="No hay clientes que cumplan el filtro"
                 editable="true"
                 >
-                
+                <!-- Captura de los eventos de acptado y cancelación de la modificación -->
                 <p:ajax event="rowEdit" listener="#{clienteBean.onRowEdit}" update=":formTablaCliente:msgs" />
                 <p:ajax event="rowEditCancel" listener="#{clienteBean.onRowCancel}" update=":formTablaCliente:msgs" />
        
@@ -226,7 +226,7 @@
                         <f:facet name="input"><p:inputText value="#{client.ciudad}" style="width:100%" /></f:facet>
                     </p:cellEditor>
                 </p:column>
-                
+                <!-- Botones de modificación y candelación del proceso -->
                 <p:column headerText="pais">
                     <p:cellEditor>
                          <f:facet name="output"><h:outputText value="#{client.pais}" /></f:facet>
