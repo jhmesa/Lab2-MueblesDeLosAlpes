@@ -52,12 +52,10 @@ public class CarroComprasBean {
     private Item item;
 
     //private VentaBean ventaBean;
-
     private Double valorTotal;
 
     @ManagedProperty(value = "#{loginBean}")
     LoginBean login;
-        
 
     public LoginBean getLogin() {
         return login;
@@ -133,7 +131,7 @@ public class CarroComprasBean {
         // Mensaje al usuario de la adición del mueble al carrito de compras
         String mensaje = "Se ha agregado al carrito de compras una unidad del mueble con referencia: " + mueble.getReferencia();
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Éxito", mensaje));
+        context.addMessage(null, new FacesMessage("Mensaje", mensaje));
 
     }
 
@@ -146,11 +144,13 @@ public class CarroComprasBean {
         // Mensaje al usuario de la eliminación
         String mensaje = "Se ha eliminado el mueble con referencia: " + item.getMueble().getReferencia();
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Éxito", mensaje));
+        context.addMessage(null, new FacesMessage("Mensaje", mensaje));
     }
 
-    /***
+    /**
+     * *
      * Calcula el valor total de la compra
+     *
      * @return valor calculado
      */
     public Double getValorTotal() {
@@ -162,15 +162,15 @@ public class CarroComprasBean {
         return valorTotal;
     }
 
-  
     /**
-     * Limpieza del carrito de compras para que quede listo para una nueva compra
+     * Limpieza del carrito de compras para que quede listo para una nueva
+     * compra
      */
     public void limpiar() {
         setItmsMuebles(new ArrayList<Item>());
         // Mensaje al usuario de limpieza del carrito de compras
         String mensaje = "Se ha limpiado la lista del carrito de compras exitosamente";
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Éxito", mensaje));
+        context.addMessage(null, new FacesMessage("Mensaje", mensaje));
     }
 }

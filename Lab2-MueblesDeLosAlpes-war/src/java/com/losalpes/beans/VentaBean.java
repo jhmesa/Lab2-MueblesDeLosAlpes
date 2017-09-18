@@ -25,17 +25,29 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 /**
- * Managed bean encargado del catálogo de clientes en el sistema
+ * Managed bean encargado de las ventas realizadas en el sistema
  *
  */
 @ManagedBean
 @ApplicationScoped
 public class VentaBean {
 
+    //-----------------------------------------------------------
+    // Atributos
+    //-----------------------------------------------------------
+    /**
+     * Refencia al objeto bos venta
+     */
     Venta venta;
 
+    /**
+     * Lista que contiene los objetos bos de ventas
+     */
     List<Venta> ventas;
 
+    /**
+     * Lista de items vendidos en el sistema
+     */
     List<Item> itemsVendidos;
 
     /**
@@ -47,7 +59,8 @@ public class VentaBean {
     }
 
     /**
-     * obtiene las ventas 
+     * obtiene las ventas
+     *
      * @return ventas realizadas
      */
     public List<Venta> getVentas() {
@@ -55,7 +68,8 @@ public class VentaBean {
     }
 
     /**
-     * setea las ventas 
+     * setea las ventas
+     *
      * @param ventas ventas realizadas
      */
     public void setVentas(List<Venta> ventas) {
@@ -64,25 +78,26 @@ public class VentaBean {
 
     /**
      * obtiene los Items vendidos
+     *
      * @return items vendidos
      */
     public List<Item> getItemsVendidos() {
         return itemsVendidos;
     }
 
-    /***
+    /**
      * Método para el registro de los pagos
+     *
      * @param usuario usuario que hace la compra
      * @param items arreglo con los items vendidos en la transacción
      */
     public void pagar(String usuario, List<Item> items) {
-        
+
         ServicioClienteMock servicio = new ServicioClienteMock();
         Cliente cliente = servicio.obtenerCliente(usuario);
-        
-        
+
         Double valorTotal = 0D;
-        
+
         // se agregan todos los itemas vendidos
         for (Item im : items) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -91,7 +106,7 @@ public class VentaBean {
             im.setCliente(cliente.getNombre());
             valorTotal += im.getPrecio();
             agregarItemAVendidos(im);
-        }      
+        }
 
         // se agrega venta a arreglo de ventas
         Venta venta = new Venta(cliente, items, valorTotal, new Date());
@@ -103,11 +118,12 @@ public class VentaBean {
         context.addMessage(null, new FacesMessage("Éxito", mensaje));
     }
 
-    /***
+    /**
      * Método para agregar las ventas al arreglo
+     *
      * @param im item a agregar a la lista
      */
-    public void agregarItemAVendidos(Item im) {       
+    public void agregarItemAVendidos(Item im) {
 
         // se valida si ya este item ha sido vendido con anterioridad
         if (getItemsVendidos().isEmpty()) {
@@ -131,12 +147,13 @@ public class VentaBean {
         }
 
     }
-    
-     /***
+
+    /**
      * Método para el borrado de los clientes
+     *
      * @param cliente cliente que va a ser borado
      */
-     public void deleteClient(Cliente cliente) {
+    public void deleteClient(Cliente cliente) {
 
         // se verifica si el cliente a borrar ha tendio alguna compra
         Boolean borrar = true;
@@ -158,6 +175,6 @@ public class VentaBean {
 
         FacesMessage msg = new FacesMessage("Mensaje", mensaje);
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        
+
     }
 }

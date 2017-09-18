@@ -189,7 +189,5 @@ public class Mueble
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
-
-
     
 }

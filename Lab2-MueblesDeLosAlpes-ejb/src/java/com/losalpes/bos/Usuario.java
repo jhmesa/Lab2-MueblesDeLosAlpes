@@ -8,19 +8,16 @@
  * Ejercicio: Muebles de los Alpes
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-
 package com.losalpes.bos;
 
 /**
  * Clase que representa un usuario del sistema
  */
-public class Usuario
-{
+public class Usuario {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-
     /**
      * Nombre del usuario
      */
@@ -39,23 +36,21 @@ public class Usuario
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
-
     /**
      * Constructor de la clase sin argumentos
      */
-    public Usuario()
-    {
+    public Usuario() {
 
     }
 
     /**
      * Constructor de la clase con argumentos
+     *
      * @param usuario Nombre del usuario
      * @param contraseña Constraseña del usuario
      * @param tipo Tipo de usuario
      */
-    public Usuario(String usuario, String contraseña, TipoUsuario tipo)
-    {
+    public Usuario(String usuario, String contraseña, TipoUsuario tipo) {
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.tipo = tipo;
@@ -64,59 +59,57 @@ public class Usuario
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
-
-
     /**
      * Devuelve la contraseña del usuario
+     *
      * @return contraseña Contraseña del usuario
      */
-    public String getContraseña()
-    {
+    public String getContraseña() {
         return contraseña;
     }
 
     /**
      * Modifica la contraseña del usuario
+     *
      * @param contraseña Nueva contraseña
      */
-    public void setContraseña(String contraseña)
-    {
+    public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
 
     /**
      * Devuelve el nombre de usuario
+     *
      * @return usuario Nombre del usuario
      */
-    public String getUsuario()
-    {
+    public String getUsuario() {
         return usuario;
     }
 
     /**
      * Modifica el usuario
+     *
      * @param usuario Nuevo nombre de usuario
      */
-    public void setUsuario(String usuario)
-    {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
     /**
      * Devuelve el tipo de usuario
+     *
      * @return tipo Tipo de usuario
      */
-    public TipoUsuario getTipo()
-    {
+    public TipoUsuario getTipo() {
         return tipo;
     }
 
     /**
      * Modifica el tipo de usuario
+     *
      * @param tipo Nuevo tipo de usuario
      */
-    public void setTipo(TipoUsuario tipo)
-    {
+    public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
 

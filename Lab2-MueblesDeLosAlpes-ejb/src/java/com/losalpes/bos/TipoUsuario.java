@@ -8,13 +8,11 @@
  * Ejercicio: Muebles de los Alpes
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-
 package com.losalpes.bos;
 
 /**
  * Clase de enumeración con los tipos de usuarios en el sistema
  */
-public enum TipoUsuario
-{
-ADMINISTRADOR, CLIENTE
+public enum TipoUsuario {
+    ADMINISTRADOR, CLIENTE
 }

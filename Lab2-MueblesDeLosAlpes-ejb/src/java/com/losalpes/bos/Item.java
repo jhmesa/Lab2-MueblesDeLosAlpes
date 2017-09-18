@@ -11,8 +11,6 @@
 
 package com.losalpes.bos;
 
-import java.util.Date;
-
 /**
  * Clase que representa la información de un item de carrito de compras en el sistema
  */
@@ -159,11 +157,6 @@ public class Item
 
     public void setCliente(String cliente) {
         this.cliente = cliente;
-    }
-
-   
-    
-    
-    
+    }   
     
 }
