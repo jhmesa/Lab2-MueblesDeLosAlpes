@@ -58,6 +58,11 @@ public class VentaBean {
         return itemsVendidos;
     }
 
+    /***
+     * Método para el registro de los pagos
+     * @param usuario usuario que hace la compra
+     * @param items arreglo con los items vendidos en la transacción
+     */
     public void pagar(String usuario, List<Item> items) {
         
         ServicioClienteMock servicio = new ServicioClienteMock();
@@ -65,6 +70,8 @@ public class VentaBean {
         
         
         Double valorTotal = 0D;
+        
+        // se agregan todos los itemas vendidos
         for (Item im : items) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             im.setFechaVenta(sdf.format(new Date()));
@@ -73,7 +80,15 @@ public class VentaBean {
             valorTotal += im.getPrecio();
             agregarItemAVendidos(im);
         }
+<<<<<<< HEAD
       
+=======
+       
+        ServicioClienteMock servicio = new ServicioClienteMock();
+
+        // se agrega venta a arreglo de ventas
+        Cliente cliente = servicio.obtenerCliente(usuario);
+>>>>>>> 14508389cd4b1d512572bcd8fec14c1297146c88
         Venta venta = new Venta(cliente, items, valorTotal, new Date());
         getVentas().add(venta);
 
@@ -83,13 +98,25 @@ public class VentaBean {
         context.addMessage(null, new FacesMessage("Éxito", mensaje));
     }
 
-    
+    /***
+     * Método para agregar las ventas al arreglo
+     * @param im item a agregar a la lista
+     */
     public void agregarItemAVendidos(Item im) {
         
+<<<<<<< HEAD
+=======
+        // se valida si ya este item ha sido vendido con anterioridad
+>>>>>>> 14508389cd4b1d512572bcd8fec14c1297146c88
         if (getItemsVendidos().isEmpty()) {
+            // se inserta uno si no se ha vendido alguno en algún moemnto
             getItemsVendidos().add(im);
         } else {
+<<<<<<< HEAD
             Agregar:
+=======
+            // se suma al contado del item la nueva venta
+>>>>>>> 14508389cd4b1d512572bcd8fec14c1297146c88
             for (Item item : getItemsVendidos()) {
                 if (item.getMueble().getReferencia().equalsIgnoreCase(im.getMueble().getReferencia())) {
                     // Aumentamos la cantidad del item
@@ -104,6 +131,35 @@ public class VentaBean {
 
         }
 
+    }
+    
+    /***
+     * Método para el borrado de los clientes
+     * @param cliente cliente que va a ser borado
+     */
+     public void deleteClient(Cliente cliente){
+        System.out.println("com.losalpes.beans.ClienteBean.delete()");
+        
+        // se verifica si el cliente a borrar ha tendio alguna compra
+        Boolean borrar = true;
+        for(Venta venta: this.ventas)
+        {
+            if(venta.getCliente().getNumDocumento() == cliente.getNumDocumento() && venta.getCliente().getTipoDocumento()== cliente.getTipoDocumento() ){
+                borrar = false;
+            }
+        }
+        
+        // de no tener compras se procede con el borrado a través del servicio de clientes
+        if(borrar)
+        {
+            ServicioClienteMock servicio = new ServicioClienteMock();
+            servicio.eliminarCliente(cliente);
+            
+            FacesMessage msg = new FacesMessage("Cliente borrado", "El cliente " + cliente.getNombre() + " ha sido borrado.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+        
+        
     }
     
 }
